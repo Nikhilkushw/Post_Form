@@ -1,10 +1,10 @@
 import React from 'react'
-import PostForm from "./form/PostForm.jsx"
+import FormData from "./form/PostForm.jsx"
 
 const App = () => {
   return (
     <div>
-      <PostForm/>
+      <FormData/>
     </div>
   )
 }

@@ -9,7 +9,7 @@ import PhotoUploader from "./imageUpload";
 import ConfirmLocationForm from "./ProfileData";
 import LocationSelector from "./location";
 
-const Form = () => {
+const FormData = () => {
   const carModels = [
     "BMW M3", "Audi A4", "Mercedes-Benz S-Class", "Toyota Corolla", "Honda Civic",
     "Ford Mustang", "Hyundai Sonata", "Kia Sorento", "Chevrolet Camaro", "Volkswagen Golf",
@@ -49,9 +49,10 @@ const Form = () => {
   };
 
   return (
-    <div className="flex flex-col mt-12 justify-center items-center gap-2">
+    <>
+    <form onSubmit={handleSubmit} className="flex flex-col mt-12 justify-center items-center gap-2">
       <h1 className="text-[24px] font-bold text-center uppercase w-full">POST YOUR AD</h1>
-      <form onSubmit={handleSubmit} className="border-[1.3px] w-[65%] border-gray-300 rounded">
+      <div className="border-[1.3px] w-[65%] border-gray-300 rounded">
         <div className="border-b border-[1.3px] border-gray-300">
           <div className="mx-6 flex flex-col gap-5 pt-5 pb-5">
             <h2 className="text-[20px] font-bold uppercase">SELECTED CATEGORY</h2>
@@ -136,9 +137,10 @@ const Form = () => {
             POST
           </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+    </>
   );
 };
 
-export default Form;
+export default FormData;

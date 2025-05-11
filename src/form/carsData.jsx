@@ -26,7 +26,7 @@ const CarBrandForm = ({car}) => {
   }, []);
 
   return (
-    <form className="">
+    <div>
       <div className="relative w-[50%]" ref={dropdownRef}>
         <input
           type="text"
@@ -57,7 +57,7 @@ const CarBrandForm = ({car}) => {
           </div>
         )}
       </div>
-    </form>
+    </div>
   );
 };
 

@@ -21,7 +21,7 @@ export default function ConfirmLocationForm() {
       <div className="flex items-center space-x-4">
         <div className="relative">
           <img
-            src={photo || "https://via.placeholder.com/80"}
+            src={photo}
             className="w-20 h-20 rounded-full object-cover"
             alt="Profile"
           />
