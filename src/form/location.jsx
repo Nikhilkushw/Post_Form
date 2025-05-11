@@ -10,7 +10,7 @@ export default function LocationSelector() {
   ];
 
   const [mode, setMode] = useState("LIST");
-  const [state, setState] = useState("");
+  const [selectedState, setSelectedState] = useState("");
   const [currentLocation, setCurrentLocation] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -18,25 +18,10 @@ export default function LocationSelector() {
     if (mode === "CURRENT") {
       setLoading(true);
       navigator.geolocation.getCurrentPosition(
-        async (position) => {
+        (position) => {
           const { latitude, longitude } = position.coords;
-          try {
-            const res = await fetch(
-              `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`
-            );
-            const data = await res.json();
-
-            const state = data.address.state || "";
-            const city = data.address.city || data.address.town || data.address.village || "";
-
-            setCurrentLocation(
-              `State: ${state}, City: ${city}`
-            );
-          } catch {
-            setCurrentLocation("Unable to fetch detailed location.");
-          } finally {
-            setLoading(false);
-          }
+          setCurrentLocation(`Lat: ${latitude.toFixed(4)}, Lon: ${longitude.toFixed(4)}`);
+          setLoading(false);
         },
         () => {
           setCurrentLocation("Location access denied.");
@@ -46,30 +31,34 @@ export default function LocationSelector() {
     }
   }, [mode]);
 
-  const isStateInvalid = mode === "LIST" && !state;
+  const isStateInvalid = mode === "LIST" && !selectedState;
 
   return (
-    <div className="w-full max-w-md">
-      <h2 className="text-lg font-bold">CONFIRM YOUR LOCATION</h2>
+    <div className="w-full max-w-md p-4 border rounded-md shadow-sm">
+      <h2 className="text-lg font-bold text-center">Confirm Your Location</h2>
 
       {/* Tabs */}
-      <div className="flex justify-center border-b pb-1 gap-28 mt-2">
-        <span
-          className={`font-semibold cursor-pointer pb-1 ${
-            mode === "LIST" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600"
+      <div className="flex justify-center gap-12 border-b mt-4 pb-2">
+        <button
+          className={`font-semibold pb-1 ${
+            mode === "LIST"
+              ? "border-b-2 border-blue-600 text-blue-600"
+              : "text-gray-600"
           }`}
           onClick={() => setMode("LIST")}
         >
           LIST
-        </span>
-        <span
-          className={`font-semibold cursor-pointer pb-1 ${
-            mode === "CURRENT" ? "border-b-2 border-blue-600 text-blue-600" : "text-gray-600"
+        </button>
+        <button
+          className={`font-semibold pb-1 ${
+            mode === "CURRENT"
+              ? "border-b-2 border-blue-600 text-blue-600"
+              : "text-gray-600"
           }`}
           onClick={() => setMode("CURRENT")}
         >
           CURRENT LOCATION
-        </span>
+        </button>
       </div>
 
       {/* Content */}
@@ -78,19 +67,19 @@ export default function LocationSelector() {
           <div>
             <label className="block mb-1 font-medium">State *</label>
             <select
-              className={`w-full border rounded-md px-4 py-3`}
-              value={state}
-              onChange={(e) => setState(e.target.value)}
+              className="w-full border rounded-md px-4 py-2"
+              value={selectedState}
+              onChange={(e) => setSelectedState(e.target.value)}
             >
               <option value="">Select a state</option>
-              {indianStates.map((st) => (
-                <option key={st} value={st}>
-                  {st}
+              {indianStates.map((state) => (
+                <option key={state} value={state}>
+                  {state}
                 </option>
               ))}
             </select>
             {isStateInvalid && (
-              <p className="text-red-500 text-xs mt-1">This field is mandatory</p>
+              <p className="text-red-500 text-sm mt-1">This field is mandatory</p>
             )}
           </div>
         ) : (
