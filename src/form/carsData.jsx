@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
 const CarBrandForm = ({ car }) => {
   const [inputValue, setInputValue] = useState("");
@@ -39,8 +38,6 @@ const CarBrandForm = ({ car }) => {
           className="w-full h-12 px-4 pr-10 border border-gray-300 rounded-md"
           placeholder="Select car brand"
         />
-
-        <ChevronDownIcon className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
 
         {showDropdown && filteredBrands.length > 0 && (
           <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-md mt-1 max-h-48 overflow-y-auto shadow">

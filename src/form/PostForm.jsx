@@ -5,7 +5,7 @@ import BoxSelector from "./boxSelect";
 import AdTitleInput from "./adTitleInput";
 import DescriptionText from "./descriptionText";
 import PriceInput from "./priceInput";
-import PhotoUploader from "./imageUpload";
+import PhotoGrid from "./imageUpload";
 import ConfirmLocationForm from "./ProfileData";
 import LocationSelector from "./location";
 
@@ -118,7 +118,7 @@ const FormData = () => {
 
         <div>
           <h2 className="text-[20px] mx-6 font-bold uppercase">UPLOAD UP TO 20 PHOTOS</h2>
-          <PhotoUploader />
+          <PhotoGrid />
         </div>
 
         <div className="mx-6">

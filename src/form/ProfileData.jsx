@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
 import { Camera } from "lucide-react";
+import React, { useState, useRef } from "react";
 
 const ConfirmLocationForm = () => {
   const [name, setName] = useState("Nikhil Kushwah");
