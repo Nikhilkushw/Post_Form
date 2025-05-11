@@ -45,7 +45,7 @@ const FormData = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Form Submitted!");
+    console.log("Form Submitted!");
   };
 
   return (
