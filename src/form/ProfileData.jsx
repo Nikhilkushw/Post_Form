@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Camera } from "lucide-react";
 
-export default function ConfirmLocationForm() {
+const ConfirmLocationForm = () => {
   const [name, setName] = useState("Nikhil Kushwah");
   const [phone, setPhone] = useState("");
   const [photo, setPhoto] = useState(null);
@@ -25,7 +25,7 @@ export default function ConfirmLocationForm() {
       <div className="flex items-center space-x-4">
         <div className="relative">
           <img
-            src={photo || "https://via.placeholder.com/80x80?text=Photo"}
+            src={photo}
             className="w-20 h-20 rounded-full object-cover border"
             alt="Profile"
           />
@@ -85,3 +85,5 @@ export default function ConfirmLocationForm() {
     </div>
   );
 }
+
+export default ConfirmLocationForm;
