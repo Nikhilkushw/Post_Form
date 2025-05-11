@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { ChevronDownIcon } from '@heroicons/react/24/solid'; // Make sure you install this
+import { ChevronDownIcon } from '@heroicons/react/24/solid';
 
-const CarBrandForm = ({car}) => {
+const CarBrandForm = ({ car }) => {
   const [inputValue, setInputValue] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const dropdownRef = useRef(null);
@@ -40,7 +40,6 @@ const CarBrandForm = ({car}) => {
           placeholder="Select car brand"
         />
 
-        {/* Down arrow icon inside input */}
         <ChevronDownIcon className="w-5 h-5 absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
 
         {showDropdown && filteredBrands.length > 0 && (

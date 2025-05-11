@@ -12,17 +12,23 @@ export default function PhotoGrid() {
   const handleUpload = (e, index = null) => {
     const file = e.target.files[0];
     if (!file) return;
-    const newPhoto = { url: URL.createObjectURL(file), file };
-    setPhotos((prev) => {
-      const updated = [...prev];
-      if (index !== null) {
-        updated[index] = newPhoto;
-      } else {
-        const firstEmpty = updated.findIndex((p) => p === null);
-        if (firstEmpty !== -1) updated[firstEmpty] = newPhoto;
-      }
-      return updated;
-    });
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const newPhoto = { url: reader.result, file };
+      setPhotos((prev) => {
+        const updated = [...prev];
+        if (index !== null) {
+          updated[index] = newPhoto;
+        } else {
+          const firstEmpty = updated.findIndex((p) => p === null);
+          if (firstEmpty !== -1) updated[firstEmpty] = newPhoto;
+        }
+        return updated;
+      });
+    };
+    reader.readAsDataURL(file);
+
     e.target.value = "";
   };
 
